@@ -1,0 +1,9 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="*.js.flow" type="Flow" />
+      <mapping pattern="*.js.flow" type="Flow" />
+      <mapping pattern="*.cpython-36m-darwin.so" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>

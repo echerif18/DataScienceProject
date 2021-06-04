@@ -1,0 +1,572 @@
+\documentclass{beamer}
+
+\usepackage{spot}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{color,soul}
+%=================================================
+% packages and new commands
+%=================================================
+\usepackage[ruled, linesnumbered, vlined]{algorithm2e}
+\usepackage{epsfig, subfigure, amssymb, multirow, algorithmic, amsmath}
+\newcommand*{\superscript}[1]{\ensuremath{^{\rm #1}}}
+\newcommand*{\subscript}[1]{\ensuremath{_{\rm #1}}}
+
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{tabulary}
+\usepackage{amsmath}
+\usepackage{ amssymb }
+\usepackage{textpos}
+\usepackage{array}
+\usepackage{color}
+\usepackage{tabularx}  % for 'tabularx' environment
+%\useapackage{ragged2e} % for \Centering macro
+
+
+%\useapackage{ragged2e} % for \Centering macro
+%\newcolumntype{C}{>{\Centering\arraybackslash}X}
+%}
+
+\DeclareMathOperator{\deepwalk}{deepwalk}
+\DeclareMathOperator{\f}{f}
+\DeclareMathOperator{\spath}{nx.shortest-path-length}
+\DeclareMathOperator{\landmark}{landmark}
+\DeclareMathOperator{\err}{Error}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\relu}{ReLu}
+\DeclareMathOperator{\D}{Dist}
+\DeclareMathOperator{\DEC}{DEC}
+\DeclareMathOperator{\ENC}{ENC}
+\DeclareMathOperator{\SP}{SP}
+
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}} 
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=logo4,% Logo for the first page.
+          ]{Torino}
+\usecolortheme{freewilly}
+
+\makeatletter
+\newbox\@backgroundblock
+\newenvironment{backgroundblock}[2]{%
+  \global\setbox\@backgroundblock=\vbox\bgroup%
+    \unvbox\@backgroundblock%
+    \vbox to0pt\bgroup\vskip#2\hbox to0pt\bgroup\hskip#1\relax%
+}{\egroup\egroup\egroup}
+\addtobeamertemplate{background}{\box\@backgroundblock}{}
+\makeatother
+
+\author{Fatemeh Salehi Rizi}
+\title{Network Representation Learning exploring Sentiments and Relationships in Social Networks
+}
+\institute{Supervisor: Prof. Michael Granitzer\\ University of Passau}
+\date{December 11, 2018}
+
+% The log drawn in the upper right corner.
+\logo{\includegraphics[scale=0.03]{fim2}}
+%[height=0.18\paperheight]
+
+
+\begin{document}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    %\frametitle{Outline for section \thesection}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+
+
+
+\section{Introduction}
+\begin{frame}{Network Representation Learning}
+\begin{itemize}
+
+\item Encoding network properties and proximities as vectors
+ \begin{center}
+    \vspace{0.5cm}
+    \includegraphics[scale=0.7]{./pics/embd.pdf}
+  \end{center} 
+  
+\pause  
+\item Applications  
+\begin{itemize} 
+\item Node Classification
+\item Clustering and Community Detection 
+\item Link Prediction
+\item Visualization
+%\item VLSI design
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Heterogeneous networks }
+\begin{textblock*}{\paperwidth}(-0.25\paperwidth, 8 mm)%
+\hfill \includegraphics [width=0.6\linewidth ]{pics/attitude.pdf}%
+
+\end{textblock*}
+
+\begin{textblock*}{\paperwidth}(-0.25\paperwidth, 45 mm)%
+\hfill \scriptsize Heterogeneous networks with sentiment, social relationship \cite{ref1}
+\end{textblock*}
+
+
+\begin{itemize}
+
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\pause
+\item Predicting the sign of sentiment links 
+\begin{itemize}
+\item Personal advertising
+\item Public opinion analysis
+\end{itemize}
+
+
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+\begin{frame}{ Research Questions}
+
+\begin{textblock*}{\paperwidth}(-0.28\paperwidth, 25 mm)%
+\hfill \includegraphics [width=0.55\linewidth ]{pics/p03_22.pdf}%
+\end{textblock*}
+
+\begin{itemize}
+\item How to learn network embeddings with presence of heterogeneous
+networks?
+\pause
+\item Can we use vector embeddings to predict sentiments?
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+
+
+
+\end{itemize}
+
+
+\end{frame}
+
+\section{State-of-the-art}
+
+\begin{frame}{\normalsize SHINE: Signed Heterogeneous Information Network Embedding
+for Sentiment Link Prediction \footnote{\tiny WSDM (ACM International Conference on Web Search and Data Mining) 2018} }
+
+
+\only<2>{\begin{textblock*}{\paperwidth}(-0.06 \paperwidth, 11 mm)%
+\hfill \includegraphics [width=0.99 \linewidth ]{pics/shine.pdf}%
+\end{textblock*} }
+\small
+\begin{itemize}
+\pause
+\item End-to-end Model: all parameters are trained jointly
+
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\item[]
+\end{itemize}
+\end{frame}
+
+%\begin{textblock*}{\paperwidth}(-0.30 \paperwidth, -22 mm)%
+%\hfill \includegraphics [width=0.45\linewidth ]{pics/shine2.pdf}%
+%\end{textblock*}
+
+
+
+
+\begin{frame}{ Sentiment Network Embedding in SHINE}
+
+\begin{figure}
+\begin{center}
+    \vspace{0.5cm}
+    \includegraphics[scale=0.999]{./pics/p05.pdf}
+    \caption{\scriptsize 6-layer autoencoder for sentiment
+network embedding \cite{ref1} }
+  \end{center} 
+ \end{figure} 
+ 
+ 
+\end{frame}
+
+
+\begin{frame}{Loss functions in SHINE}
+
+\begin{itemize}
+\small
+\item Loss for  Social Network Embedding
+
+\[ \mathcal{L}_s=\sum_{i\in V} \|y_i-y'_i \odot m_i\|_2^2\]
+
+\[m_i = (m_{i,1},m_{i,2}, \cdots ,m_{i,|V|})  
+ , m_{i,j}=\Big \{ \begin{array}{rcl}
+\alpha & (i,j) \in E \\
+1 &  (i,j)  \notin E\\
+\end{array}  \]
+
+\item Loss for Sentiment Network Embedding
+\[ \mathcal{L}_r=\sum_{i\in V} \|x_i-x'_i \odot l_i\|_2^2\]
+
+\item Loss for Profile Network Embedding
+
+\[ \mathcal{L}_p=\sum_{i\in V} \|z_i-z'_i \odot n_i\|_2^2\]
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{SHINE Representation Aggregation and Prediction }
+
+\begin{itemize}
+\small
+\item Aggregation function g
+
+\begin{itemize}
+
+\item Concatenation $e_i=  x_i \oplus y_i \oplus z_i$
+\item Maxpooling $e_i=max (x_i,y_i,z_i) $
+\item Summation $e_i=x_i+y_i+z_i$
+
+\end{itemize}
+
+
+
+\pause
+\item Final objective function
+
+\[ \mathcal{L}=  \sum_{i\in V} \|x_i-x'_i \odot l_i\|_2^2 + \lambda_1 \sum_{i\in V} \|y_i-y'_i \odot m_i\|_2^2  \]
+\[+ \lambda_2 \sum_{i\in V} \|z_i-z'_i \odot n_i\|_2^2  + \lambda_3 \sum_{s_{ij}=\pm 1 } (\f(e_i, e_j)- s_{ij})^2+  \lambda_4 \mathcal{L}_{reg}\]
+\item Similarity measurement function f
+\begin{itemize}
+\item Inner product $\f(e_i, e_j)= e_i^T.e_j+b$
+\item Euclidean distance $\f(e_i, e_j)=\| e_i-e_j \|^2+b $
+\item Logistic regression $\f(e_i, e_j)= W^T ( e_i \oplus e_j) +b$
+\end{itemize}
+
+
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Drawbacks of SHINE}
+
+\begin{itemize}
+\item No discussion over Time Complexity
+\begin{itemize}
+
+
+\item One iteration takes 8 min!
+
+\end{itemize}
+\item[]
+\item Too many parameters to tune ($\alpha$, $\lambda_1$, $\lambda_2$, $\lambda_3$, $\lambda_4$,$d$)
+
+\item[]
+\item Asymmetry embedding without experimental support
+\item[]
+\item Using profile information which is not always publicly available
+
+\end{itemize}
+\end{frame}
+
+
+\section{Approach}
+
+\begin{frame}{Approach }
+\begin{textblock*}{\paperwidth}(-0.06 \paperwidth, 52 mm)%
+\hfill \includegraphics [width=0.26 \linewidth ]{pics/sigmoid.png}%
+\end{textblock*}
+
+\small
+%\item Learning embeddings for the sentiment network
+%\vspace{0.5 cm}
+\begin{center}
+\includegraphics[scale=0.41]{./pics/signed4.pdf}
+\end{center}
+
+
+%Higher inner product term increases the probability of positive connection
+
+\begin{itemize}
+\item A Feedforward neural network with an objective function:
+\scriptsize
+\end{itemize}
+%\frac{1}{1+e^{W_u \cdot W_v} } 
+
+
+ \[ \max P(u,v)=\sigma(W_u \cdot W_v) \]
+
+\[  \min P(z,v)= \sigma(W_z \cdot W_v)  \]
+
+
+
+\end{frame}
+
+
+\begin{frame}{Approach }
+\begin{itemize}
+\small
+
+\item Ensemble Model: embeddings are trained independently
+\pause
+\item Sentiment Network
+\[ max \sum_{(u,v)\in E}  \Big(\log P(u,v, s_{uv}=+1) + \sum_{j=1}^k \log(1- P(u,v_j,s_{uv_j}=-1)) \Big)  \]
+\pause
+
+\item Social Network same as LINE \cite{ref2}
+\[ max \sum_{(u,v)\in E}  \Big( \log P(u,v) + \sum_{j=1}^k \log(1- P(u,v_j)) \Big)  \]
+
+\pause
+
+\item  Aggregated Representations:
+
+\[ u_f=  u_s \oplus u_r  \]
+
+
+\end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}{Difference to SIDE \cite{ref3} }
+
+
+
+\begin{itemize}
+
+%\normalsize 
+
+
+\item Random walks to capture co-occurred pairs (\textcolor{red}{ too many samples!}) %$\mathcal{D}$
+
+\pause
+\item Additional bias terms to capture directions (\textcolor{red}{no evaluation!}) 
+
+%\[ max \sum_{(u,v)\in \mathcal{D} }  \Big( \log P(u,v) + \sum_{j=1}^k \log(1- P(u,v_j)) \Big)  \]
+
+\begin{center}
+\includegraphics[scale=0.35]{./pics/p13.pdf}
+\end{center}
+\pause
+
+\item Inferring sign for the co-occurred pairs (\textcolor{red}{Additional information!})
+
+\begin{itemize}
+\item sign(u,v)=+1
+
+\item sign(u,z)=? (-1 Social Balance Theory)
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.41]{./pics/seq.pdf}
+\end{center}
+
+\pause
+\item Delete nodes with degree one before walk (\textcolor{red}{losing information!})
+
+
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\section{Experimental Results}
+\begin{frame}{Experimental Results}
+
+
+\begin{itemize}
+
+\item Datasets
+
+\begin{itemize}
+\item Weibo-STC: Weibo Sentiment Towards Celebrities \cite{ref1}
+\item Wiki-RfA: Wikipedia Requests for Adminship \cite{ref1}
+
+\end{itemize}
+
+
+\begin{table}[H]
+\centering
+\scriptsize 
+  \label{tab:dataset}
+ %\begin{tabularx}{\textwidth}|{C| C | C | C | C | C |}
+%\begin{tabular}{l K{1.8cm} K{1.8cm}K{1.8cm} K{1.8cm}K{1.8cm}}
+\begin{tabular}{|l  |c  |c  |c  |c | c| c|}
+\hline
+  Dataset  & $\vert V \vert $  & social links & sentiment links \Tstrut\\
+ \hline
+  Weibo-STC & 12,814  &71,268 &65,420\Tstrut\\
+ 
+ \hline
+  Wiki-RfA & 10,835  & 159,388 & 159,388 \Tstrut\\
+ 
+  \hline
+
+\end{tabular}
+%\caption{Statistics of Network Datasets}
+\end{table}
+
+\pause
+\item Runtime
+
+\begin{table}[H]
+\centering
+\scriptsize 
+  \label{tab:dataset}
+ %\begin{tabularx}{\textwidth}|{C| C | C | C | C | C |}
+%\begin{tabular}{l K{1.8cm} K{1.8cm}K{1.8cm} K{1.8cm}K{1.8cm}}
+\begin{tabular}{|l  |c | c  |c|}
+\hline
+  Approach &Dataset  & 1 epoch (CPU)& Overall Runtime\Tstrut\\
+ \hline
+ SHINE &Weibo-STC &  8 min&8 min\Tstrut\\
+  \hline
+  our approach & Weibo-STC & 12 sec& 1 min 12 sec \Tstrut\\
+ \hline
+\end{tabular}
+%\caption{Statistics of Network Datasets}
+\end{table}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Signed link Prediction}
+
+\begin{textblock*}{\paperwidth}(-0.1\paperwidth, 8 mm)%
+\hfill \includegraphics [width=0.89\linewidth ]{pics/accuracy.pdf}%
+
+\end{textblock*}
+
+\begin{textblock*}{\paperwidth}(0.2\paperwidth, 37 mm)%
+\tiny Accuracy and micro-F1 on Weibo-STC and Wiki-RfA for link prediction \cite{ref1}
+\end{textblock*}
+
+
+\vspace{4.3cm}
+
+\pause
+\scriptsize
+\begin{table}
+
+   \begin{tabular}{l |c| c|c| c| c| c }
+   
+ 
+Dataset & dimension size &Approach &$50 \%$ & $70 \%$ & $90 \%$  \Tstrut \\
+   \hline
+      \multirow{2}{*}{Weibo-STC}
+     &100  &SHINE  & 0.761 & 0.778& 0.845 \Tstrut\\ 
+     & 100 &our approach & \textbf{0.881}& \textbf{ 0.889} & \textbf{0.905}\Tstrut \\
+    
+     \hline
+      \multirow{2}{*}{Wiki-RfA }
+     &100 &SHINE   & 0.810 & 0.816 & 0.821 \Tstrut\\ 
+     & 100 &our approach & 0.813 & 0.814& 0.815 \Tstrut \\    
+    
+  \end{tabular}
+
+    \caption{\scriptsize Accuracy for Signed Link Prediction}
+ \end{table}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Conclusion and Future Work}
+
+\begin{itemize}
+\item Summary
+
+\begin{itemize}
+
+\item Learning aggregated representation for heterogeneous networks
+\item Exploiting embeddings for tasks such as signed link prediction
+\end{itemize}
+
+\item[]
+\item[]
+
+
+\item Future work
+
+\begin{itemize}
+
+\item Learning aggregated representation in single loss function
+%\item Considering profile information
+\end{itemize}
+
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\section{References}
+%\begin{frame}[allowframebreaks]{References}
+
+\begin{frame}{References}
+\begin{thebibliography}{9}
+
+\tiny
+
+ \bibitem{ref1} Wang, Hongwei, Fuzheng Zhang, Min Hou, Xing Xie, Minyi Guo, and Qi Liu. "SHINE: signed heterogeneous information network embedding for sentiment link prediction." In Proceedings of the Eleventh ACM International Conference on Web Search and Data Mining, pp. 592-600. ACM, 2018.
+ 
+ 
+ \bibitem{ref2} Tang, Jian, Meng Qu, Mingzhe Wang, Ming Zhang, Jun Yan, and Qiaozhu Mei. "Line: Large-scale information network embedding." In Proceedings of the 24th International Conference on World Wide Web, pp. 1067-1077. International World Wide Web Conferences Steering Committee, 2015.
+ 
+ 
+ \bibitem{ref3} Kim, Junghwan, Haekyu Park, Ji-Eun Lee, and U. Kang. "Side: representation learning in signed directed networks." In Proceedings of the 2018 World Wide Web Conference on World Wide Web, pp. 509-518. International World Wide Web Conferences Steering Committee, 2018.
+ 
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}{}
+
+\begin{center}
+\Huge Thanks for your attention!
+\end{center}
+\end{frame}
+\end{document}
+

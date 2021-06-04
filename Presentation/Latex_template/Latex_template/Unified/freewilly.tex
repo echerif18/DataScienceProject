@@ -1,0 +1,347 @@
+\documentclass{beamer}
+
+\usepackage{spot}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{color,soul}
+%=================================================
+% packages and new commands
+%=================================================
+%\usepackage[ruled, linesnumbered, vlined]{algorithm2e}
+\usepackage{epsfig, subfigure, amssymb, multirow}
+
+\usepackage{amsmath}
+%\usepackage[noend]{algpseudocode}
+\usepackage{algorithm, algorithmic}
+
+\newcommand*{\superscript}[1]{\ensuremath{^{\rm #1}}}
+\newcommand*{\subscript}[1]{\ensuremath{_{\rm #1}}}
+
+%\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{tabulary}
+\usepackage{amsmath}
+\usepackage{ amssymb }
+\usepackage{textpos}
+\usepackage{array}
+\usepackage{color}
+\usepackage{tabularx} 
+\usepackage{amsmath}
+\usepackage{listings}
+\usetheme{Madrid}
+
+
+%\usepackage{algorithm, algorithmic}
+
+ % for 'tabularx' environment
+%\useapackage{ragged2e} % for \Centering macro
+
+
+%\useapackage{ragged2e} % for \Centering macro
+%\newcolumntype{C}{>{\Centering\arraybackslash}X}
+%}
+ 
+
+
+\DeclareMathOperator{\deepwalk}{deepwalk}
+\DeclareMathOperator{\f}{f}
+\DeclareMathOperator{\spath}{nx.shortest-path-length}
+\DeclareMathOperator{\landmark}{landmark}
+\DeclareMathOperator{\err}{Error}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\relu}{ReLU}
+\DeclareMathOperator{\D}{Dist}
+\DeclareMathOperator{\DEC}{DEC}
+\DeclareMathOperator{\ENC}{ENC}
+\DeclareMathOperator{\SP}{SP}
+
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}} 
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          %titlepagelogo=fim2,% Logo for the first page.
+          ]{Torino}
+\usecolortheme{freewilly}
+
+
+\makeatletter
+\newbox\@backgroundblock
+\newenvironment{backgroundblock}[2]{%
+  \global\setbox\@backgroundblock=\vbox\bgroup%
+    \unvbox\@backgroundblock%
+    \vbox to0pt\bgroup\vskip#2\hbox to0pt\bgroup\hskip#1\relax%
+}{\egroup\egroup\egroup}
+\addtobeamertemplate{background}{\box\@backgroundblock}{}
+\makeatother
+
+\author{Your names}
+\title{ \textbf{A Unified Framework for Graph Embedding}}
+
+
+\institute{Data Science Lab \Tstrut \\ University of Passau}
+\date{February, 2020}
+
+% The log drawn in the upper right corner.
+\logo{\includegraphics[scale=0.03]{fim2}}
+%[height=0.18\paperheight]
+
+
+\begin{document}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    %\frametitle{Outline for section \thesection}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+
+
+
+\section{Introduction}
+
+
+
+
+
+\begin{frame}{Graph Embedding}
+
+ \begin{center}
+    \vspace{0.1cm}
+    \includegraphics[scale=0.45]{./pics/embd.pdf}
+  \end{center} 
+  
+
+
+\[ \Theta: V \mapsto \mathbb{R}^d \]
+
+\end{frame}
+
+
+\section{Approach}
+\begin{frame}{node2vec}
+
+ use textblock to locate images 
+
+\begin{textblock*}{\paperwidth}(-0.14 \paperwidth, -28 mm)%
+\hfill \includegraphics [width=0.4 \linewidth ]{pics/data}%
+\end{textblock*}
+
+
+ you can use pause 
+\pause 
+
+\begin{textblock*}{\paperwidth}(-0.30 \paperwidth, 47 mm)%
+\hfill \small example for textblock: $k $
+
+\end{textblock*}
+ 
+
+
+\end{frame}
+
+
+  
+\begin{frame}{WalkLets}
+ 
+ 
+\end{frame}
+ 
+
+ \begin{frame}{HARP}
+ 
+ 
+\end{frame}
+
+\begin{frame}{struc2vec}
+ 
+ 
+\end{frame}
+
+
+
+
+\section{Experimental Results}
+\begin{frame}{Datasets}
+
+\begin{table}
+
+\caption{\small Statistics of datasets.}
+\label{tab:data}
+\begin{center}
+\small
+
+\begin{tabular}{ccccc}
+{\bf Dataset}  & {\bf Nodes } &{\bf Edges } &{\bf Attributes }&{\bf Labels }\Tstrut\\
+ \hline 
+ \Tstrut
+Cora         & 2,708 &  5,429&  1,433 & 7\Tstrut\\
+Citeseer      &3,312& 4,660 & 3,703 &  6\Tstrut\\
+
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{itemize}
+\item Cora~\cite{citeseer} and Citeseer~\cite{citeseer}:
+\begin{itemize}
+\item The labels indicate publications topics.
+\item Attributes are binary representations of words in the corresponding publications.
+\end{itemize}
+
+
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Link Prediction}
+
+explain about Link Prediction\\
+use textblock to adjust images or tables in the frame
+
+\begin{textblock*}{\paperwidth}(-0.30 \paperwidth, 4 mm)%
+\hfill \small example for textblock: $k $
+
+\end{textblock*}
+
+
+\end{frame}
+
+
+\begin{frame}{ Node Classification}
+
+explain about node classification and compare the baselines\\
+use textblock to adjust images or tables in the frame
+
+\begin{textblock*}{\paperwidth}(-0.30 \paperwidth, 4 mm)%
+\hfill \small example for textblock: $k $
+
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}{ Node Classification}
+\tiny
+
+\begin{table}
+
+\caption{\scriptsize Node classification performance (Macro-F1 score) of different methods on different datasets.}
+
+
+\begin{center}
+\begin{tabular}{cccc ccc ccc cc}
+\hline
+\textbf{Dataset}&
+\textbf{Method}&
+\multicolumn{10}{c}{\textbf{Macro-F1} } \Tstrut\\
+  \hline  
+\Tstrut
+\Tstrut
+  &  &   $10\%$  & $20\%$ & $30\%$  &$40\%$ & $50\%$ & $60\%$ & $70\%$ & $80\%$ &$90\%$ \Tstrut\\
+
+ \multirow{5}{*}{Cora}&baseline & \textbf{0.828} &\textbf{0.841 }&\textbf{0.854 }&\textbf{0.869} &\textbf{0.883}&\textbf{0.901}& \textbf{0.909}& \textbf{0.916}& \textbf{0.921}\Tstrut\\
+   & baseline  & 0.663 &  0.673 & 0.684 &0.691  &0.726&  0.754&0.769 & 0.788 &0.808\Tstrut\\
+   & baseline  &0.733 &0.752 &0.768 &0.773 &0.788& 0.794& 0.806 &0.814 & 0.822\Tstrut\\
+   & baseline  & 0.778 & 0.795 & 0.812&0.822 & 0.837 & 0.854 & 0.861& 0.869 & 0.877 \Tstrut\\
+   &  baseline & 0.695& 0.713& 0.729 & 0.732& 0.746& 0.767& 0.788 &0.792 & 0.806\Tstrut\\
+     \hline 
+     
+      \Bstrut
+  \multirow{5}{*}{Citeseer}&baseline  &\textbf{0.731} &\textbf{0.739}& \textbf{0.755}& \textbf{0.778}& \textbf{0.786} &\textbf{0.790} &\textbf{0.796} &\textbf{0.804} &\textbf{0.812 }\Tstrut\\
+   &  baseline  & 0.538& 0.588 &0.607& 0.610 &0.616 & 0.621 &0.635& 0.656 & 0.677   & \Tstrut\\
+    &  baseline  & 0.577 & 0.606&  0.613 & 0.619&  0.628&  0.632&  0.638 & 0.641&  0.642\Tstrut\\
+  &  baseline  &0.604  &0.633 &0.671 & 0.678 &0.696& 0.705& 0.723& 0.735& 0.745 \Tstrut\\
+   &  baseline  &0.556& 0.571 & 0.614& 0.650 & 0.656 & 0.662  &0.670 &0.666& 0.682\Tstrut\\ 
+   \Tstrut\\
+    
+  \hline 
+\end{tabular}
+\label{tab:partial}
+\end{center}
+
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}{ Cora Visualization}
+
+use textbloack to adjust images in the frame
+
+\begin{textblock*}{\paperwidth}(-0.30 \paperwidth, 4 mm)%
+\hfill \small example for textblock: $k $
+
+\end{textblock*}
+
+
+\end{frame}
+
+
+
+
+\section{Conclusion}
+\begin{frame}{Conclusion}
+\begin{itemize}
+
+\item Graph embedding is useful for ...
+
+\item We learned ...
+\end{itemize}
+
+
+\end{frame}
+
+
+\section{References}
+%\begin{frame}[allowframebreaks]{References}
+
+\begin{frame}{References}
+\begin{thebibliography}{9}
+
+\tiny
+
+   \bibitem{citeseer} Prithviraj Sen, Galileo Namata, Mustafa Bilgic, Lise Getoor, Brian Gal-
+ligher, and Tina Eliassi-Rad, "Collective classification in network data",
+AI magazine, 29(3), 93-93, (2008).
+
+
+\bibitem{fb} Jure Leskovec and Julian J Mcauley, "Learning to discover social circles in ego networks", in Advances in neural information processing
+systems, pp. 539-547, (2012).
+
+
+.
+ 
+ 
+
+
+ 
+ 
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}{}
+
+\begin{center}
+\Huge Thanks for your attention!
+\end{center}
+\end{frame}
+
+
+\end{document}
+

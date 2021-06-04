@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Approach}{5}{0}{2}
+\beamer@sectionintoc {3}{Experimental Results}{11}{0}{3}
+\beamer@sectionintoc {4}{Conclusion}{17}{0}{4}
+\beamer@sectionintoc {5}{References}{19}{0}{5}
